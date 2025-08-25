@@ -1,10 +1,23 @@
-import { Box } from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 
 function App() {
   return (
-    <Box width="100%" padding="4" color="white">
-      <h1>Mini RAWG</h1>
-    </Box>
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`,
+      }}
+    >
+      <GridItem area={"nav"} bg="skyblue">
+        nav
+      </GridItem>
+      <Show when={window.innerWidth > 1200}>
+        <GridItem bg={"pink"} area={"aside"}>
+          aside
+        </GridItem>
+      </Show>
+      <GridItem area={"main"}>main</GridItem>
+    </Grid>
   );
 }
 
