@@ -1,6 +1,9 @@
-import { Card, Heading, Image, Show, Text } from "@chakra-ui/react";
+import { Card, Heading, HStack, Image, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { Game } from "../hooks/useGames";
+import { cropImage } from "../utils/cropImage";
+import CriticScore from "./CriticScore";
+import PlatformIconList from "./PlatformIconList";
 
 interface Props {
   game: Game;
@@ -15,13 +18,18 @@ const GameCard = ({ game }: Props) => {
       onMouseOver={() => setShowData(!showData)}
     >
       <Card.Header padding={0}>
-        <Image src={game.background_image} />
+        <Image src={cropImage(game.background_image, 600, 400)} />
       </Card.Header>
-      <Card.Body>
+      <Card.Body gap={4}>
         <Heading fontSize={"xl"} color={"#c3c3c3"}>
           {game.name}
         </Heading>
-
+        <HStack justifyContent="space-between" alignItems="start">
+          <PlatformIconList
+            platforms={game.parent_platforms.map((item) => item.platform)}
+          />
+          <CriticScore score={game.metacritic} />
+        </HStack>
         <Text color={"gray.700"}>Released data: {game.released}</Text>
       </Card.Body>
     </Card.Root>
