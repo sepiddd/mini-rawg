@@ -22,9 +22,14 @@ interface FetchGamesResponse {
   results: Game[];
 }
 
-export const useGames = (): { games: Game[]; error: string } => {
+export const useGames = (): {
+  games: Game[];
+  error: string;
+  loading: boolean;
+} => {
   const [games, setGames] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -34,6 +39,9 @@ export const useGames = (): { games: Game[]; error: string } => {
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
       });
 
     return () => controller.abort();
@@ -42,5 +50,6 @@ export const useGames = (): { games: Game[]; error: string } => {
   return {
     games,
     error,
+    loading,
   };
 };

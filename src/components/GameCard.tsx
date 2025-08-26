@@ -1,5 +1,4 @@
 import { Card, Heading, HStack, Image, Text } from "@chakra-ui/react";
-import { useState } from "react";
 import { Game } from "../hooks/useGames";
 import { cropImage } from "../utils/cropImage";
 import CriticScore from "./CriticScore";
@@ -10,13 +9,8 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  const [showData, setShowData] = useState(false);
   return (
-    <Card.Root
-      borderRadius={8}
-      overflow="hidden"
-      onMouseOver={() => setShowData(!showData)}
-    >
+    <Card.Root borderRadius={8} overflow="hidden">
       <Card.Header padding={0}>
         <Image src={cropImage(game.background_image, 600, 400)} />
       </Card.Header>
