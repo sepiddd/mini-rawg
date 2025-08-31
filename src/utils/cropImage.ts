@@ -1,9 +1,9 @@
 const baseImgUrl = "https://media.rawg.io/media";
 
-export const cropImage = (src: string, width: number, height: number) => {
+export const cropImage = (src: string) => {
   const newURL =
     src.indexOf(baseImgUrl) >= 0
-      ? `${baseImgUrl}/crop/${width}/${height}${src.replace(baseImgUrl, "")}`
+      ? `${baseImgUrl}/crop/600/400${src.replace(baseImgUrl, "")}`
       : src;
 
   return newURL;

@@ -1,21 +1,31 @@
-import { useData } from "../hooks/useData";
-
-interface Genre {
-  id: number;
-  name: string;
-  slug: string;
-  games_count: number;
-  image_background: string;
-}
+import { HStack, Image, List } from "@chakra-ui/react";
+import { useGenres } from "../hooks/useGenres";
+import { cropImage } from "../utils/cropImage";
+import SideBarListItemSkeleton from "./SideBarListItemSkeleton";
 
 const SideBar = () => {
-  const { data: genres, loading, error } = useData<Genre>("/genres");
+  const { data: genres, loading, error } = useGenres();
+  const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  if (error) return <></>;
   return (
-    <ul>
+    <List.Root padding={8} listStyle="none" display="flex" gap={2}>
+      {loading &&
+        skeleton.map((item) => <SideBarListItemSkeleton key={item} />)}
       {genres.map((genre) => (
-        <li>{genre.name}</li>
+        <List.Item key={genre.id}>
+          <HStack>
+            <Image
+              width="40px"
+              height="40px"
+              borderRadius="4px"
+              src={cropImage(genre.image_background)}
+            />
+            {genre.name}
+          </HStack>
+        </List.Item>
       ))}
-    </ul>
+    </List.Root>
   );
 };
 
