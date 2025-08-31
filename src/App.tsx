@@ -20,7 +20,10 @@ function App() {
       </GridItem>
       <Show when={window.innerWidth > 1200}>
         <GridItem area={"aside"} width={250}>
-          <SideBar setSelectedGenre={setSelectedGenre} />
+          <SideBar
+            setSelectedGenre={setSelectedGenre}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={10}>

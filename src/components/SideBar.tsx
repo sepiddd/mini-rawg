@@ -5,9 +5,10 @@ import SideBarListItemSkeleton from "./SideBarListItemSkeleton";
 
 interface Props {
   setSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const SideBar = ({ setSelectedGenre }: Props) => {
+const SideBar = ({ setSelectedGenre, selectedGenre }: Props) => {
   const { data: genres, loading, error } = useGenres();
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -26,6 +27,7 @@ const SideBar = ({ setSelectedGenre }: Props) => {
               src={cropImage(genre.image_background)}
             />
             <Button
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               variant="plain"
               fontSize="lg"
               onClick={() => setSelectedGenre(genre)}
