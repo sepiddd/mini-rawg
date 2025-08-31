@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import GameGrid from "./components/GameGrid";
 import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
       </GridItem>
       <Show when={window.innerWidth > 1200}>
         <GridItem area={"aside"} width={250}>
-          aside
+          <SideBar />
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={10}>
