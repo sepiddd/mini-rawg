@@ -2,6 +2,11 @@ import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 
+interface FetchResponse<T> {
+  results: T[];
+  count: number;
+}
+
 export const useData = <T>(
   endpoint: string
 ): {
@@ -16,7 +21,7 @@ export const useData = <T>(
   useEffect(() => {
     const controller = new AbortController();
     apiClient
-      .get<{ results: T[]; count: number }>(endpoint, {
+      .get<FetchResponse<T>>(endpoint, {
         signal: controller.signal,
       })
       .then((res) => {
