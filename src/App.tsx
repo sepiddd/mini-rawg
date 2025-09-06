@@ -7,11 +7,16 @@ import SideBar from "./components/SideBar";
 import { PlatformItem } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: PlatformItem | null;
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<PlatformItem | null>(
-    null
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({
+    genre: null,
+    platform: null,
+  });
   return (
     <Grid
       templateAreas={{
@@ -26,20 +31,19 @@ function App() {
       <Show when={window.innerWidth > 1200}>
         <GridItem area={"aside"} width={250}>
           <SideBar
-            setSelectedGenre={setSelectedGenre}
-            selectedGenre={selectedGenre}
+            setSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
+            selectedGenre={gameQuery.genre}
           />
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={10}>
         <FiltersBox
-          selectedPlatform={selectedPlatform}
-          setSelectedPlatform={setSelectedPlatform}
+          selectedPlatform={gameQuery.platform}
+          setSelectedPlatform={(platform) =>
+            setGameQuery({ ...gameQuery, platform })
+          }
         />
-        <GameGrid
-          selectedGenre={selectedGenre}
-          selectedPlatform={selectedPlatform}
-        />
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   );
