@@ -1,9 +1,7 @@
-import { Button, chakra, HStack, Icon, Menu, Portal } from "@chakra-ui/react";
+import { Button, HStack, Icon, Menu, Portal } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import { PlatformItem } from "../hooks/useGames";
 import { usePlatforms } from "../hooks/usePlatforms";
-
-const ChevronIcon = chakra(BsChevronDown as any);
 
 interface Props {
   setSelectedPlatform: (platform: PlatformItem) => void;
@@ -18,12 +16,10 @@ const FiltersBox = ({ selectedPlatform, setSelectedPlatform }: Props) => {
   return (
     <HStack marginBottom={8}>
       <Menu.Root>
-        <Menu.Trigger>
+        <Menu.Trigger asChild>
           <Button variant="outline" size="sm">
-            {`Platforms ${selectedPlatform?.name || ""}`}
-            <Icon>
-              <ChevronIcon />
-            </Icon>
+            {`${selectedPlatform?.name || "Platforms"}`}
+            <Icon as={BsChevronDown as any} />
           </Button>
         </Menu.Trigger>
         <Portal>

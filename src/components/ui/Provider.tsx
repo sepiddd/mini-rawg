@@ -1,9 +1,4 @@
-import {
-  ChakraProvider,
-  createSystem,
-  defaultConfig,
-  defineConfig,
-} from "@chakra-ui/react";
+import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 
 interface Props {
