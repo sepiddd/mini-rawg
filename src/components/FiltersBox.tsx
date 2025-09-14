@@ -26,8 +26,9 @@ const FiltersBox = ({ selectedPlatform, setSelectedPlatform }: Props) => {
           <Menu.Content>
             {platforms?.map((platform) => (
               <Menu.Item
-                onClick={() => setSelectedPlatform(platform)}
+                onSelect={() => setSelectedPlatform(platform)}
                 key={platform.id}
+                value={platform.name}
               >
                 {platform.name}
               </Menu.Item>

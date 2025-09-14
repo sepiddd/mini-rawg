@@ -33,7 +33,8 @@ const SortSelector = ({ selectedOrder, setSlectedOrder }: Props) => {
             {sortOrders.map((item) => (
               <Menu.Item
                 key={item.value}
-                onClick={() => setSlectedOrder(item.value)}
+                onSelect={() => setSlectedOrder(item.value)}
+                value={item.value}
               >
                 {item.label}
               </Menu.Item>

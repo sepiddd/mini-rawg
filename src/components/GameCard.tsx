@@ -1,4 +1,4 @@
-import { Card, Heading, HStack, Image, Text } from "@chakra-ui/react";
+import { Card, Heading, HStack, Image } from "@chakra-ui/react";
 import { Game } from "../hooks/useGames";
 import { cropImage } from "../utils/cropImage";
 import CriticScore from "./CriticScore";
@@ -15,9 +15,6 @@ const GameCard = ({ game }: Props) => {
         <Image src={cropImage(game.background_image)} />
       </Card.Header>
       <Card.Body gap={4}>
-        <Heading fontSize={"xl"} color={"#c3c3c3"}>
-          {game.name}
-        </Heading>
         <HStack justifyContent="space-between" alignItems="start">
           {game?.parent_platforms?.length > 0 && (
             <PlatformIconList
@@ -27,7 +24,9 @@ const GameCard = ({ game }: Props) => {
 
           {game.metacritic && <CriticScore score={game.metacritic} />}
         </HStack>
-        <Text color={"gray.700"}>Released data: {game.released}</Text>
+        <Heading fontSize={"xl"} color={"#c3c3c3"}>
+          {game.name}
+        </Heading>
       </Card.Body>
     </Card.Root>
   );

@@ -1,4 +1,4 @@
-import { Grid, GridItem, Heading, HStack, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import FiltersBox from "./components/FiltersBox";
 import GameGrid from "./components/GameGrid";
@@ -8,8 +8,6 @@ import SideBar from "./components/SideBar";
 import SortSelector from "./components/SortSelector";
 import { PlatformItem } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
-
-// export type OrderType = "name" | "released" | "added" | "rating" | "metacritic";
 
 export interface GameQuery {
   genre: Genre | null;
