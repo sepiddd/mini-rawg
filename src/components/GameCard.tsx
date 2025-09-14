@@ -19,10 +19,13 @@ const GameCard = ({ game }: Props) => {
           {game.name}
         </Heading>
         <HStack justifyContent="space-between" alignItems="start">
-          <PlatformIconList
-            platforms={game.parent_platforms.map((item) => item.platform)}
-          />
-          <CriticScore score={game.metacritic} />
+          {game?.parent_platforms?.length > 0 && (
+            <PlatformIconList
+              platforms={game.parent_platforms.map((item) => item.platform)}
+            />
+          )}
+
+          {game.metacritic && <CriticScore score={game.metacritic} />}
         </HStack>
         <Text color={"gray.700"}>Released data: {game.released}</Text>
       </Card.Body>

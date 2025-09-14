@@ -33,15 +33,19 @@ type PlatformSlug = keyof typeof iconMap;
 const PlatformIconList = ({ platforms }: Props) => {
   return (
     <HStack flexWrap="wrap">
-      {platforms.map((platform) => (
-        <Icon
-          key={platform.id ?? platform.slug}
-          as={iconMap[platform.slug as PlatformSlug] as any}
-          fontSize={20} // size control (e.g., 16px)
-          aria-label={platform.slug}
-          color="gray.400"
-        />
-      ))}
+      {platforms?.map((platform) => {
+        if (iconMap[platform.slug as PlatformSlug])
+          return (
+            <Icon
+              key={platform.id ?? platform.slug}
+              as={iconMap[platform.slug as PlatformSlug] as any}
+              fontSize={20} // size control (e.g., 16px)
+              aria-label={platform.slug}
+              color="gray.400"
+            />
+          );
+        return <></>;
+      })}
     </HStack>
   );
 };
