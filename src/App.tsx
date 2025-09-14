@@ -1,7 +1,8 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import FiltersBox from "./components/FiltersBox";
 import GameGrid from "./components/GameGrid";
+import GameHeading from "./components/GameHeading";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
 import SortSelector from "./components/SortSelector";
@@ -49,6 +50,7 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area={"main"} padding={10}>
+        <GameHeading gameQuery={gameQuery} />
         <HStack marginBottom={5} gap={5}>
           <FiltersBox
             selectedPlatform={gameQuery.platform}
