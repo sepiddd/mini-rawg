@@ -8,15 +8,19 @@ import SortSelector from "./components/SortSelector";
 import { PlatformItem } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
 
+// export type OrderType = "name" | "released" | "added" | "rating" | "metacritic";
+
 export interface GameQuery {
   genre: Genre | null;
   platform: PlatformItem | null;
+  sortOrder: string;
 }
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
     genre: null,
     platform: null,
+    sortOrder: "",
   });
   return (
     <Grid
@@ -24,13 +28,13 @@ function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
-      templateColumns={{ base: "1fr", lg: "200px 1fr" }}
+      templateColumns={{ base: "1fr", lg: "300px 1fr" }}
     >
       <GridItem area={"nav"}>
         <NavBar />
       </GridItem>
       <Show when={window.innerWidth > 1200}>
-        <GridItem area={"aside"} width={250}>
+        <GridItem area="aside">
           <SideBar
             setSelectedGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
             selectedGenre={gameQuery.genre}
@@ -45,7 +49,12 @@ function App() {
               setGameQuery({ ...gameQuery, platform })
             }
           />
-          <SortSelector />
+          <SortSelector
+            selectedOrder={gameQuery.sortOrder}
+            setSlectedOrder={(order) =>
+              setGameQuery({ ...gameQuery, sortOrder: order })
+            }
+          />
         </HStack>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
