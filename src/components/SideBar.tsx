@@ -1,4 +1,4 @@
-import { Button, HStack, Image, List } from "@chakra-ui/react";
+import { Button, Heading, HStack, Image, List } from "@chakra-ui/react";
 import { Genre, useGenres } from "../hooks/useGenres";
 import { cropImage } from "../utils/cropImage";
 import SideBarListItemSkeleton from "./SideBarListItemSkeleton";
@@ -15,6 +15,9 @@ const SideBar = ({ setSelectedGenre, selectedGenre }: Props) => {
   if (error) return <></>;
   return (
     <List.Root padding={8} listStyle="none" display="flex" gap={2}>
+      <Heading size="xl" marginBottom={4}>
+        Genres
+      </Heading>
       {loading &&
         skeleton.map((item) => <SideBarListItemSkeleton key={item} />)}
       {genres.map((genre) => (
@@ -24,6 +27,7 @@ const SideBar = ({ setSelectedGenre, selectedGenre }: Props) => {
               width="40px"
               height="40px"
               borderRadius="4px"
+              objectFit="cover"
               src={cropImage(genre.image_background)}
             />
             <Button
