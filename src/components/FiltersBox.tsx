@@ -1,4 +1,4 @@
-import { Button, HStack, Icon, Menu, Portal } from "@chakra-ui/react";
+import { Button, Icon, Menu, Portal } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import { PlatformItem } from "../hooks/useGames";
 import { usePlatforms } from "../hooks/usePlatforms";

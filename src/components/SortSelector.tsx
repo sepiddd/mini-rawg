@@ -15,34 +15,21 @@ const SortSelector = ({ selectedOrder, setSlectedOrder }: Props) => {
     { value: "-metacritic", label: "Popularity" },
     { value: "-rating", label: "Average rating" },
   ];
+
+  const currentSortOrder = sortOrders.find(
+    (item) => item.value === selectedOrder
+  );
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="outline" size="sm">
-          Order by: {selectedOrder}
+          Order by: {currentSortOrder?.label}
           <Icon as={BsChevronDown as any} />
         </Button>
       </Menu.Trigger>
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            {/* <Menu.Item onClick={() => setSlectedOrder(null)}>
-              Relevence
-            </Menu.Item> */}
-            {/* <Menu.Item onClick={() => setSlectedOrder("added")}>
-              Date added
-            </Menu.Item> */}
-            {/* <Menu.Item onClick={() => setSlectedOrder("name")}>Name</Menu.Item> */}
-            {/* <Menu.Item onClick={() => setSlectedOrder("released")}>
-              Release date
-            </Menu.Item> */}
-            {/* <Menu.Item onClick={() => setSlectedOrder("metacritic")}>
-              Popularity
-            </Menu.Item> */}
-            {/* <Menu.Item onClick={() => setSlectedOrder("rating")}>
-              Average rating
-            </Menu.Item> */}
-
             {sortOrders.map((item) => (
               <Menu.Item
                 key={item.value}
